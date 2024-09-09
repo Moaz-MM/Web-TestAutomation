@@ -9,6 +9,7 @@ public class LoginPage {
     By emailField = By.id("email");
     By passwordField = By.id("pass");
     By loginButton = By.id("send2");
+    By forgotPasswordButton = By.linkText("Forgot Your Password?");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -24,5 +25,10 @@ public class LoginPage {
 
     public void submitLogin(){
         driver.findElement(loginButton).click();
+    }
+
+    public ForgotPasswordPage clickForgotPasswordButton(){
+        driver.findElement(forgotPasswordButton).click();
+        return new ForgotPasswordPage(driver);
     }
 }
