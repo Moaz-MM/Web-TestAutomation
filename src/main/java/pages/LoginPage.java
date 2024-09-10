@@ -10,6 +10,8 @@ public class LoginPage {
     By passwordField = By.id("pass");
     By loginButton = By.id("send2");
     By forgotPasswordButton = By.linkText("Forgot Your Password?");
+    By welcomeMessage = By.className("logged-in");
+//    By myAccountHeader = By.className("base");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -23,8 +25,16 @@ public class LoginPage {
         driver.findElement(passwordField).sendKeys(password);
     }
 
-    public void submitLogin(){
+    public void clickLoginButton(){
         driver.findElement(loginButton).click();
+    }
+
+    public String getWelcomeMessage(){
+        try{
+            return driver.findElement(welcomeMessage).getText();
+        } catch (Exception e){
+            return "Login not successful";
+        }
     }
 
     public ForgotPasswordPage clickForgotPasswordButton(){

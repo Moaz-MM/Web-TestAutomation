@@ -12,7 +12,7 @@ public class RegisterPage {
     By passwordField = By.id("password");
     By confirmPasswordField = By.id("password-confirmation");
     By registrationSubmissionButton = By.xpath("//button[@title='Create an Account']");
-    By successfullRegistrationMessage = By.xpath("//div[@data-ui-id]/div");
+    By successfulRegistrationMessage = By.xpath("//div[@data-ui-id]/div");
 
 
     public RegisterPage(WebDriver driver) {
@@ -52,7 +52,7 @@ public class RegisterPage {
         driver.findElement(registrationSubmissionButton).click();
     }
 
-    public String getSuccessfullRegistrationMessage(){
-        return driver.findElement(successfullRegistrationMessage).getText();
+    public String getSuccessfulRegistrationMessage(){
+        return driver.findElement(successfulRegistrationMessage).getText();
     }
 }
