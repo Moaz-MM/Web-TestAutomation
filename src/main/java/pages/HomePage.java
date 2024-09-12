@@ -16,15 +16,16 @@ public class HomePage {
     private By searchInput = By.id("search");
     private By changeButton = By.className("switch");
     private By myAccountButton = By.linkText("My Account");
-    private By signoutButton = By.xpath("//li[@class='authorization-link']/a");
+    private By myWishListButton = By.linkText("My Wish List");
+    private By signoutButton = By.linkText("Sign Out");
     private By cartIcon = By.className("showcart");
-    private By editAndViewCartButton = By.className("viewcart");
-    private By emptyCartText = By.xpath("//*[@id='minicart-content-wrapper']/div[2]/strong");
     private By addToCartButton = By.xpath("//*[contains(@class, 'product-items')]/li[3]//button");
     private By listOfProducts = By.className("product-items");
     private By thirdProductBlock = By.xpath("//*[contains(@class, 'product-items')]/li[3]");
     private By thirdProductAddToCartButton = By.xpath("//*[contains(@class, 'product-items')]/li[3]//button");
-    private By proceedToCheckoutButton = By.id("top-cart-btn-checkout");
+    private By menCategoryButton = By.id("ui-id-5");
+    private By menTopsButton = By.id("ui-id-17");
+    private By menJacketsButton = By.id("ui-id-19");
 
     public HomePage(WebDriver driver){
         this.driver = driver;
@@ -43,8 +44,8 @@ public class HomePage {
     }
 
     public ProductPage addThirdProductToCart(){
-
-        actions.moveToElement(driver.findElement(thirdProductBlock)).
+        actions.
+                moveToElement(driver.findElement(thirdProductBlock)).
                 moveToElement(driver.findElement(thirdProductAddToCartButton)).click().perform();
         return new ProductPage(driver);
     }
@@ -65,26 +66,15 @@ public class HomePage {
         return new MyAccountPage(driver);
     }
 
-    public void clickCartIcon(){
+    public MyWishListPage goToMyWishListPage(){
+        driver.findElement(changeButton).click();
+        driver.findElement(myWishListButton).click();
+        return new MyWishListPage(driver);
+    }
+
+    public CartSidePanel clickCartIcon(){
         driver.findElement(cartIcon).click();
-    }
-
-    public ShoppingCartPage viewAndEditCart(){
-        driver.findElement(editAndViewCartButton).click();
-        return new ShoppingCartPage(driver);
-    }
-
-    public CheckoutPage clickProceedToCheckout(){
-        driver.findElement(proceedToCheckoutButton).click();
-        return new CheckoutPage(driver);
-    }
-
-    public String getEmptyCartText(){
-        try{
-            return driver.findElement(emptyCartText).getText();
-        }catch (Exception e){
-            return "Empty cart message didn't appear";
-        }
+        return new CartSidePanel(driver);
     }
 
     public void addProductToCart(){
@@ -101,7 +91,12 @@ public class HomePage {
         return new SearchPage(driver);
     }
 
-    public void chooseCategory(String genericCategory, String clothesCategory, String clothesName){
-        //TODO
+    public FilterProductsPage choseMenJackets(){
+        actions.
+                moveToElement(driver.findElement(menCategoryButton)).
+                moveToElement(driver.findElement(menTopsButton)).
+                moveToElement(driver.findElement(menJacketsButton)).
+                click().perform();
+        return new FilterProductsPage(driver);
     }
 }
