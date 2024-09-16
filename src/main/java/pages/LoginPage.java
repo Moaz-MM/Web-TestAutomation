@@ -11,6 +11,9 @@ public class LoginPage {
     By loginButton = By.id("send2");
     By forgotPasswordButton = By.linkText("Forgot Your Password?");
     By welcomeMessage = By.className("logged-in");
+    By loginErrorMessage = By.xpath("//div[@data-ui-id='message-error']/div");
+    By emailErrorMessage = By.id("email-error");
+    By passwordErrorMessage = By.id("pass-error");
 //    By myAccountHeader = By.className("base");
 
     public LoginPage(WebDriver driver) {
@@ -35,6 +38,18 @@ public class LoginPage {
         } catch (Exception e){
             return "Login not successful";
         }
+    }
+
+    public String getLoginErrorMessage(){
+        return driver.findElement(loginErrorMessage).getText();
+    }
+
+    public String getEmailErrorMessage(){
+        return driver.findElement(emailErrorMessage).getText();
+    }
+
+    public String getPasswordErrorMessage(){
+        return driver.findElement(passwordErrorMessage).getText();
     }
 
     public ForgotPasswordPage clickForgotPasswordButton(){

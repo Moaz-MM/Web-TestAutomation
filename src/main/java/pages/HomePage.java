@@ -19,7 +19,7 @@ public class HomePage {
     private By myWishListButton = By.linkText("My Wish List");
     private By signoutButton = By.linkText("Sign Out");
     private By cartIcon = By.className("showcart");
-    private By addToCartButton = By.xpath("//*[contains(@class, 'product-items')]/li[3]//button");
+//    private By addToCartButton = By.xpath("//*[contains(@class, 'product-items')]/li[3]//button");
     private By listOfProducts = By.className("product-items");
     private By thirdProductBlock = By.xpath("//*[contains(@class, 'product-items')]/li[3]");
     private By thirdProductAddToCartButton = By.xpath("//*[contains(@class, 'product-items')]/li[3]//button");
@@ -32,10 +32,9 @@ public class HomePage {
         actions = new Actions(driver);
     }
 
-//    public HomePage clickLogo(){
-//        driver.findElement(logo).click();
-//        return this;
-//    }
+    public void clickLogo(){
+        driver.findElement(logo).click();
+    }
 
     public void scrollToProducts(){
         JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
@@ -77,11 +76,11 @@ public class HomePage {
         return new CartSidePanel(driver);
     }
 
-    public void addProductToCart(){
-        driver.findElement(addToCartButton).click();
-    }
+//    public void addProductToCart(){
+//        driver.findElement(addToCartButton).click();
+//    }
 
-    public void signout(){
+    public void logOut(){
         driver.findElement(changeButton).click();
         driver.findElement(signoutButton).click();
     }
