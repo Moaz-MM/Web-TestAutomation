@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class LoginTests extends BaseTests {
 
-    @Test
+    @Test(priority = 1)
     public void loginSuccessfully(){
         HashMap<String, String> loginCredentials = getLoginCredentials();
         LoginPage loginPage = homePage.clickLoginButton();
@@ -23,7 +23,7 @@ public class LoginTests extends BaseTests {
         homePage.clickLogo();
     }
 
-    @Test
+    @Test(priority = 2)
     public void loginWithInvalidEmail(){
         LoginPage loginPage = homePage.clickLoginButton();
         loginPage.setEmail("fake@email.com");
@@ -33,7 +33,7 @@ public class LoginTests extends BaseTests {
         homePage.clickLogo();
     }
 
-    @Test
+    @Test(priority = 3)
     public void loginWithEmptyFields(){
         LoginPage loginPage = homePage.clickLoginButton();
         loginPage.setEmail("");
@@ -45,7 +45,7 @@ public class LoginTests extends BaseTests {
         homePage.clickLogo();
     }
 
-    @Test
+    @Test(priority = 4)
     public void logout(){
         HashMap<String, String> credentials = getLoginCredentials();
         LoginPage loginPage = homePage.clickLoginButton();
