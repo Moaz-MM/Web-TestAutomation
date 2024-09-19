@@ -13,9 +13,7 @@ import pages.HomePage;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class BaseTests {
 
@@ -43,6 +41,9 @@ public class BaseTests {
     private ChromeOptions getChromeoptions(){
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("autofill.profile_enabled", false);
+        chromeOptions.setExperimentalOption("prefs", prefs);
         return chromeOptions;
     }
 
@@ -92,6 +93,40 @@ public class BaseTests {
         }
         return null;
     }
+
+    public List<HashMap<String, String>> getAllLoginCredentials() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String loginCredentialsFilePath = "src/test/resources/LoginCredentials.json";
+        try {
+            List<HashMap<String, String>> credentialsList = objectMapper.readValue(
+                    new File(loginCredentialsFilePath),
+                    new TypeReference<List<HashMap<String, String>>>() {});
+
+            if (!credentialsList.isEmpty()) {
+                return credentialsList;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<HashMap<String, String>> getAddressesData() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String addressesDataFilePath = "src/test/resources/AddressesData.json";
+        try {
+            List<HashMap<String, String>> addressesData = objectMapper.readValue(
+                    new File(addressesDataFilePath),
+                    new TypeReference<List<HashMap<String, String>>>() {});
+            if (!addressesData.isEmpty()) {
+                return addressesData;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void updateLoginCredentials(String newEmail, String newPassword) {
         ObjectMapper objectMapper = new ObjectMapper();
         String loginCredentialsFilePath = "src/test/resources/LoginCredentials.json";
@@ -102,8 +137,10 @@ public class BaseTests {
                     new TypeReference<List<HashMap<String, String>>>() {});
             HashMap<String, String> credentials = credentialsList.get(credentialsList.size()-1);
             credentials.put("email", newEmail);
-            credentials.put("newPassword", credentials.get("password"));
-            credentials.put("password", newPassword);
+            if(!Objects.equals(newPassword, credentials.get("password"))) {
+                credentials.put("newPassword", credentials.get("password"));
+                credentials.put("password", newPassword);
+            }
             credentialsList.remove(credentialsList.size()-1);
             credentialsList.add(credentials);
 

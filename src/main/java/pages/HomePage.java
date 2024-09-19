@@ -5,31 +5,37 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HomePage {
 
-    private WebDriver driver;
-    Actions actions;
-    private By logo = By.className("logo");
-    private By registerButton = By.linkText("Create an Account");
-    private By loginButton = By.linkText("Sign In");
-    private By searchInput = By.id("search");
-    private By changeButton = By.className("switch");
-    private By myAccountButton = By.linkText("My Account");
-    private By myWishListButton = By.linkText("My Wish List");
-    private By signoutButton = By.linkText("Sign Out");
-    private By cartIcon = By.className("showcart");
-//    private By addToCartButton = By.xpath("//*[contains(@class, 'product-items')]/li[3]//button");
-    private By listOfProducts = By.className("product-items");
-    private By thirdProductBlock = By.xpath("//*[contains(@class, 'product-items')]/li[3]");
-    private By thirdProductAddToCartButton = By.xpath("//*[contains(@class, 'product-items')]/li[3]//button");
-    private By menCategoryButton = By.id("ui-id-5");
-    private By menTopsButton = By.id("ui-id-17");
-    private By menJacketsButton = By.id("ui-id-19");
+    private final WebDriver driver;
+    private final Actions actions;
+    private final WebDriverWait wait;
+    private final By logo = By.className("logo");
+    private final By registerButton = By.linkText("Create an Account");
+    private final By loginButton = By.linkText("Sign In");
+    private final By searchInput = By.id("search");
+    private final By changeButton = By.className("switch");
+    private final By myAccountButton = By.linkText("My Account");
+    private final By myWishListButton = By.linkText("My Wish List");
+    private final By signoutButton = By.linkText("Sign Out");
+    private final By cartIcon = By.className("showcart");
+//    private final By addToCartButton = By.xpath("//*[contains(@class, 'product-items')]/li[3]//button");
+    private final By listOfProducts = By.className("product-items");
+    private final By thirdProductBlock = By.xpath("//*[contains(@class, 'product-items')]/li[3]");
+    private final By thirdProductAddToCartButton = By.xpath("//*[contains(@class, 'product-items')]/li[3]//button");
+    private final By menCategoryButton = By.id("ui-id-5");
+    private final By menTopsButton = By.id("ui-id-17");
+    private final By menJacketsButton = By.id("ui-id-19");
 
     public HomePage(WebDriver driver){
         this.driver = driver;
         actions = new Actions(driver);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
     public void clickLogo(){
@@ -60,6 +66,7 @@ public class HomePage {
     }
 
     public MyAccountPage goToMyAccountPage(){
+        wait.until(ExpectedConditions.elementToBeClickable(changeButton));
         driver.findElement(changeButton).click();
         driver.findElement(myAccountButton).click();
         return new MyAccountPage(driver);
