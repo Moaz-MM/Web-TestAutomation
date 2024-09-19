@@ -9,6 +9,7 @@ public class ForgotPasswordPage {
     By emailField = By.id("email_address");
     By resetPasswordButton = By.xpath("//button[@class='action submit primary']");
     By resetPasswordMessage = By.xpath("//div[@data-ui-id]/div");
+    By emailErrorMessage = By.id("email_address-error");
 
     public ForgotPasswordPage(WebDriver driver) {
         this.driver = driver;
@@ -20,6 +21,10 @@ public class ForgotPasswordPage {
 
     public void clickResetPasswordButton(){
         driver.findElement(resetPasswordButton).click();
+    }
+
+    public String getEmailErrorMessage(){
+        return driver.findElement(emailErrorMessage).getText();
     }
 
     public String getResetPasswordMessage(){
