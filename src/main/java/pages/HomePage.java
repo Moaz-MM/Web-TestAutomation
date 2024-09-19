@@ -26,8 +26,13 @@ public class HomePage {
     private final By cartIcon = By.className("showcart");
 //    private final By addToCartButton = By.xpath("//*[contains(@class, 'product-items')]/li[3]//button");
     private final By listOfProducts = By.className("product-items");
-    private final By thirdProductBlock = By.xpath("//*[contains(@class, 'product-items')]/li[3]");
-    private final By thirdProductAddToCartButton = By.xpath("//*[contains(@class, 'product-items')]/li[3]//button");
+    private final By thirdProductBlock = By.xpath("//li[@class='product-item'][3]");
+    private final By thirdProductAddToCartButton = By.xpath("//li[@class='product-item'][3]//button");
+    private final By fourthProductBlock = By.xpath("//li[@class='product-item'][4]");
+    private final By fourthProductName = By.xpath("//li[@class='product-item'][4]//a[@class='product-item-link']");
+    private final By fourthProductLSize = By.xpath("//li[@class='product-item'][4]//div[@option-id='169']");
+    private final By fourthProductBlackColor = By.xpath("//li[@class='product-item'][4]//div[@option-id='49']");
+    private final By fourthProductAddToWishlistButton = By.xpath("//li[@class='product-item'][4]//a[@title='Add to Wish List']");
     private final By menCategoryButton = By.id("ui-id-5");
     private final By menTopsButton = By.id("ui-id-17");
     private final By menJacketsButton = By.id("ui-id-19");
@@ -53,6 +58,23 @@ public class HomePage {
                 moveToElement(driver.findElement(thirdProductBlock)).
                 moveToElement(driver.findElement(thirdProductAddToCartButton)).click().perform();
         return new ProductPage(driver);
+    }
+
+    public String getFourthProductName(){
+        return driver.findElement(fourthProductName).getText();
+    }
+
+    public void selectOptionsForFourthProduct(){
+        actions.moveToElement(driver.findElement(fourthProductLSize)).click().
+                moveToElement(driver.findElement(fourthProductBlackColor)).click().
+                perform();
+    }
+
+    public MyWishListPage addFourthProductToWishlist(){
+        actions.
+                moveToElement(driver.findElement(fourthProductBlock)).
+                moveToElement(driver.findElement(fourthProductAddToWishlistButton)).click().perform();
+        return new MyWishListPage(driver);
     }
 
     public LoginPage clickLoginButton(){

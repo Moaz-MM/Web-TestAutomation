@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class RegisterTests extends BaseTests {
 
-    @Test
+    @Test(invocationCount = 3)
     public void registerSuccessfully(){
         RegisterPage registerPage = homePage.clickRegisterButton();
         HashMap<String, String> registerCredentials = getRegisterCredentials();
