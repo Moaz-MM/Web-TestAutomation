@@ -1,0 +1,35 @@
+[
+  {
+    "company": "ITI",
+    "phone": "01011121314",
+    "street1": "st.16",
+    "street2": "st.17",
+    "street3": "st.18",
+    "city": "Cairo",
+    "state": "Maadi",
+    "zipcode": "200",
+    "country": "Egypt"
+  },
+  {
+    "company": "Vois",
+    "phone": "01012131415",
+    "street1": "st.19",
+    "street2": "st.20",
+    "street3": "st.21",
+    "city": "Alexandria",
+    "state": "RamlStation",
+    "zipcode": "400",
+    "country": "Egypt"
+  },
+  {
+    "company": "IBM",
+    "phone": "01013141516",
+    "street1": "st.22",
+    "street2": "st.23",
+    "street3": "st.24",
+    "city": "Giza",
+    "state": "Haram",
+    "zipcode": "600",
+    "country": "Egypt"
+  }
+]
