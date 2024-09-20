@@ -9,6 +9,11 @@ public class ProductPage {
     By addToCartButton = By.id("product-addtocart-button");
     By productName = By.className("base");
     By productAddedToCartMessage = By.xpath("//div[@data-ui-id='message-success']/div");
+    By noticeMessage = By.xpath("//div[@data-ui-id='message-notice']/div");
+    By sizeIsRequiredText = By.id("super_attribute[143]-error");
+    By colorIsRequiredText = By.id("super_attribute[93]-error");
+    By quantityField = By.id("qty");
+    By shoppingCartButton = By.xpath("//div[@data-ui-id='message-success']/div/a");
 
     public ProductPage(WebDriver driver) {
         this.driver = driver;
@@ -26,6 +31,11 @@ public class ProductPage {
         driver.findElement(colorButton).click();
     }
 
+    public void choseQuantity(int quantity){
+        driver.findElement(quantityField).clear();
+        driver.findElement(quantityField).sendKeys(String.valueOf(quantity));
+    }
+
     public void clickAddToCart(){
         driver.findElement(addToCartButton).click();
     }
@@ -40,5 +50,18 @@ public class ProductPage {
         } catch (Exception e){
             return "Product added to cart message didn't appear";
         }
+    }
+
+    public String getNoticeMessage(){
+        try {
+            return driver.findElement(noticeMessage).getText();
+        } catch (Exception e){
+            return "Notice message didn't appear";
+        }
+    }
+
+    public ShoppingCartPage goToShoppingCart(){
+        driver.findElement(shoppingCartButton).click();
+        return new ShoppingCartPage(driver);
     }
 }
