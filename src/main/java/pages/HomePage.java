@@ -1,9 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,6 +16,7 @@ public class HomePage {
     private final By registerButton = By.linkText("Create an Account");
     private final By loginButton = By.linkText("Sign In");
     private final By searchInput = By.id("search");
+    private final By searchButton = By.xpath("//button[@title='Search']");
     private final By changeButton = By.className("switch");
     private final By myAccountButton = By.linkText("My Account");
     private final By myWishListButton = By.linkText("My Wish List");
@@ -115,8 +113,17 @@ public class HomePage {
     }
 
     public SearchPage search(String searchString){
+        driver.findElement(searchInput).clear();
         driver.findElement(searchInput).sendKeys(searchString + Keys.ENTER);
         return new SearchPage(driver);
+    }
+
+    public boolean isSearchButtonClickable(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(searchButton));
+        }catch (Exception e){}
+        return driver.findElement(searchButton).isEnabled();
     }
 
     public FilterProductsPage choseMenJackets(){
