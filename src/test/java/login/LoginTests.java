@@ -45,6 +45,7 @@ public class LoginTests extends BaseTests {
         homePage.clickLogo();
     }
 
+    //TODO assert logout message
     @Test(priority = 4)
     public void logout(){
         HashMap<String, String> credentials = getLoginCredentials();

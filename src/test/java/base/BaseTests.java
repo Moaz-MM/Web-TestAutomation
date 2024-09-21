@@ -23,7 +23,7 @@ public class BaseTests {
     @BeforeClass
     public void setUp(){
         driver = new ChromeDriver(getChromeoptions());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         goHome();
         homePage = new HomePage(driver);
     }
@@ -87,6 +87,26 @@ public class BaseTests {
 
             if (!credentialsList.isEmpty()) {
                 return credentialsList.get(credentialsList.size()-1);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public HashMap<String, String> getLoginCredentials(int index) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String loginCredentialsFilePath = "src/test/resources/LoginCredentials.json";
+        try {
+            List<HashMap<String, String>> credentialsList = objectMapper.readValue(
+                    new File(loginCredentialsFilePath),
+                    new TypeReference<List<HashMap<String, String>>>() {});
+
+            if (index<0){
+                index = credentialsList.size() + index;
+            }
+            if (!credentialsList.isEmpty()) {
+                return credentialsList.get(index);
             }
         } catch (IOException e) {
             e.printStackTrace();

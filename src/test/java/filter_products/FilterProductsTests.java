@@ -11,7 +11,7 @@ public class FilterProductsTests extends BaseTests {
 
     @Test(priority = 1)
     public void filterBySizeAndColor(){
-        FilterProductsPage filterProductsPage = homePage.choseMenJackets();
+        FilterProductsPage filterProductsPage = homePage.chooseMenJackets();
         String size = "XL";     String color = "Red";
         filterProductsPage.selectSizeAndColor(size, color);
         SoftAssert softAssert = new SoftAssert();
@@ -22,21 +22,21 @@ public class FilterProductsTests extends BaseTests {
 
     @Test(priority = 2)
     public void sortByPriceDescending(){
-        FilterProductsPage filterProductsPage = homePage.choseMenJackets();
+        FilterProductsPage filterProductsPage = homePage.chooseMenJackets();
         filterProductsPage.sortByPriceDesc();
         Assert.assertTrue(filterProductsPage.isPricesSortedDesc(), "Products aren't sorted desc by prices");
     }
 
     @Test(priority = 3)
     public void sortByPriceAscending(){
-        FilterProductsPage filterProductsPage = homePage.choseMenJackets();
+        FilterProductsPage filterProductsPage = homePage.chooseMenJackets();
         filterProductsPage.sortByPriceAsc();
         Assert.assertTrue(filterProductsPage.isPricesSortedAsc(), "Products aren't sorted asc by prices");
     }
 
     @Test
     public void addProductToCartAfterChoosingOptions(){
-        FilterProductsPage filterProductsPage = homePage.choseMenJackets();
+        FilterProductsPage filterProductsPage = homePage.chooseMenJackets();
         String size = "XL";     String color = "Red";
         filterProductsPage.selectSizeAndColor(size, color);
         String productName = filterProductsPage.addFirstProductToCart();
@@ -47,7 +47,7 @@ public class FilterProductsTests extends BaseTests {
 
     @Test
     public void addProductToCartWithoutChoosingOptions(){
-        FilterProductsPage filterProductsPage = homePage.choseMenJackets();
+        FilterProductsPage filterProductsPage = homePage.chooseMenJackets();
         ProductPage productPage = filterProductsPage.addFirstProductToCartWithoutOptions();
         Assert.assertEquals(productPage.getNoticeMessage(),
                 "You need to choose options for your item.",

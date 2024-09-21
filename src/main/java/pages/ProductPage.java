@@ -19,19 +19,19 @@ public class ProductPage {
         this.driver = driver;
     }
 
-    public void choseSize(String size){
+    public void chooseSize(String size){
         String sizeXpath = "//*[@option-label='" + size + "']";
         By sizeButton = By.xpath(sizeXpath);
         driver.findElement(sizeButton).click();
     }
 
-    public void choseColor(String color){
+    public void chooseColor(String color){
         String colorXpath = "//*[@option-label='" + color + "']";
         By colorButton = By.xpath(colorXpath);
         driver.findElement(colorButton).click();
     }
 
-    public void choseQuantity(int quantity){
+    public void chooseQuantity(int quantity){
         driver.findElement(quantityField).clear();
         driver.findElement(quantityField).sendKeys(String.valueOf(quantity));
     }

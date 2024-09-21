@@ -126,7 +126,7 @@ public class HomePage {
         return driver.findElement(searchButton).isEnabled();
     }
 
-    public FilterProductsPage choseMenJackets(){
+    public FilterProductsPage chooseMenJackets(){
         actions.
                 moveToElement(driver.findElement(menCategoryButton)).
                 moveToElement(driver.findElement(menTopsButton)).
