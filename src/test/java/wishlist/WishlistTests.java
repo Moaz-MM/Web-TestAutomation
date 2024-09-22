@@ -22,6 +22,7 @@ public class WishlistTests extends BaseTests {
         String productName = homePage.getFourthProductName();
         MyWishListPage myWishListPage = homePage.addFourthProductToWishlist();
         Assert.assertEquals(myWishListPage.getSuccessMessage(), productName + " has been added to your Wish List. Click here to continue shopping.", "Product added to wishlist success message didn't appear");
+        homePage.logOut();
     }
 
     @Test(priority = 2)
@@ -38,6 +39,7 @@ public class WishlistTests extends BaseTests {
         Assert.assertEquals(myWishListPage.getSuccessMessage(), productName + " has been added to your Wish List. Click here to continue shopping.", "Product added to wishlist success message didn't appear");
         myWishListPage.clickAddAllToCartButton();
         Assert.assertEquals(myWishListPage.getErrorMessage(), "You need to choose options for your item for \"" + productName + "\".");
+        homePage.logOut();
     }
 
     @Test(priority = 3)
@@ -51,6 +53,7 @@ public class WishlistTests extends BaseTests {
         String productName = myWishListPage.getFirstProductName();
         myWishListPage.deleteFirstProduct();
         Assert.assertEquals(myWishListPage.getSuccessMessage(), productName + " has been removed from your Wish List.", "Product successfully deleted from wishlist message didn't appear");
+        homePage.logOut();
     }
 
     @Test(priority = 4)
@@ -68,5 +71,6 @@ public class WishlistTests extends BaseTests {
         Assert.assertEquals(myWishListPage.getSuccessMessage(), productName + " has been added to your Wish List. Click here to continue shopping.", "Product added to wishlist success message didn't appear");
         myWishListPage.clickAddAllToCartButton();
         Assert.assertEquals(myWishListPage.getSuccessMessage(), "You added "+ productName + " to your shopping cart.", "All added to cart success message didn't appear");
+        homePage.logOut();
     }
 }

@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class RegisterTests extends BaseTests {
 
-    @Test(invocationCount = 1)
+    @Test(invocationCount = 3)
     public void registerSuccessfully(){
         RegisterPage registerPage = homePage.clickRegisterButton();
         HashMap<String, String> registerCredentials = getRegisterCredentials();
@@ -49,7 +49,7 @@ public class RegisterTests extends BaseTests {
     @Test
     public void registerWithInvalidEmail(){
         RegisterPage registerPage = homePage.clickRegisterButton();
-        registerPage.register("", "", "moaz.com", "", "");
+        registerPage.register("Moaz", "Mohammed", "moaz.com", "mo123456_", "mo123456_");
         Assert.assertEquals(registerPage.getEmailErrorMessage(), "Please enter a valid email address (Ex: johndoe@domain.com).", "Invalid email error message didn't appear");
         homePage.clickLogo();
     }
