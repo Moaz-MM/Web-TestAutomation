@@ -36,7 +36,6 @@ public class AccountInformationPage {
         driver.findElement(currentPasswordField).sendKeys(currentPassword);
     }
 
-    //TODO update password in login data
     public void setNewPassword(String newPassword){
         driver.findElement(newPasswordField).sendKeys(newPassword);
     }

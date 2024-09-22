@@ -1,6 +1,10 @@
 package account;
 
 import base.BaseTests;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -14,6 +18,9 @@ import java.util.List;
 
 public class MyAccountTests extends BaseTests {
 
+    @Description("Given I'm in my account page, When change my email with valid email, Then I should be able to change it successfully")
+    @Story("Account Info")
+    @Severity(SeverityLevel.BLOCKER)
     @Test(priority = 1)
     public void changeEmailWithValidEmail(){
         HashMap<String, String> loginCredentials = getLoginCredentials();
@@ -33,6 +40,9 @@ public class MyAccountTests extends BaseTests {
         updateLoginCredentials(newEmail, loginCredentials.get("password"));
     }
 
+    @Description("Given I'm in my account page, When I try to change my email with an exiting email, Then error message should appear")
+    @Story("Account Info")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 2)
     public void changeEmailWithExistingEmail(){
         List<HashMap<String, String>> allLoginCredentials = getAllLoginCredentials();
@@ -52,6 +62,9 @@ public class MyAccountTests extends BaseTests {
         homePage.logOut();
     }
 
+    @Description("Given I'm in my account page, When I try to change my email with an invalid email, Then error message should appear")
+    @Story("Account Info")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 3)
     public void changeEmailWithInvalidEmail(){
         HashMap<String, String> loginCredentials = getLoginCredentials();
@@ -69,6 +82,9 @@ public class MyAccountTests extends BaseTests {
         homePage.logOut();
     }
 
+    @Description("Given I'm in my account page, When I try to change my password with a valid password, Then I should be able to change it successfully")
+    @Story("Account Info")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 4)
     public void changePasswordWithValidPassword(){
         HashMap<String, String> loginCredentials = getLoginCredentials();
@@ -77,7 +93,6 @@ public class MyAccountTests extends BaseTests {
         loginPage.setPassword(loginCredentials.get("password"));
         loginPage.clickLoginButton();
         MyAccountPage myAccountPage = homePage.goToMyAccountPage();
-        //TODO use data driven
         String newPassword = loginCredentials.get("newPassword");
         AccountInformationPage accountInformationPage = myAccountPage.clickChangePasswordButton();
         accountInformationPage.setCurrentPassword(loginCredentials.get("password"));
@@ -88,6 +103,9 @@ public class MyAccountTests extends BaseTests {
         updateLoginCredentials(loginCredentials.get("email"), newPassword);
     }
 
+    @Description("Given I'm in my account page, When I try to change my password with an invalid password, Then error message should appear")
+    @Story("Account Info")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 5)
     public void changePasswordWithInvalidPassword(){
         HashMap<String, String> loginCredentials = getLoginCredentials();
@@ -106,6 +124,9 @@ public class MyAccountTests extends BaseTests {
         homePage.logOut();
     }
 
+    @Description("Given I'm in my account page, When I try to add an address and fill required fields, Then address should be saved successfully")
+    @Story("Account Info")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 6)
     public void addFirstAddressToAddressBook(){
         HashMap<String, String> loginCredentials = getLoginCredentials();
@@ -130,6 +151,9 @@ public class MyAccountTests extends BaseTests {
         homePage.logOut();
     }
 
+    @Description("Given I'm in my account page, When I try to add Additional address and fill required fields, Then address should be added successfully")
+    @Story("Account Info")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 7, dataProvider = "getAdditionalAddressesData")
     public void addNewAddressesToAddressBook(HashMap<String, String> addressData){
         HashMap<String, String> loginCredentials = getLoginCredentials();
@@ -154,6 +178,9 @@ public class MyAccountTests extends BaseTests {
         homePage.logOut();
     }
 
+    @Description("Given I'm in my account page, When I try to change address usage, Then change should be saved successfully")
+    @Story("Account Info")
+    @Severity(SeverityLevel.NORMAL)
     @Test(priority = 8, dataProvider = "defaultAddressesUsageChange")
     public void editAdditionalAddresses(String usage){
         HashMap<String, String> loginCredentials = getLoginCredentials();
@@ -170,6 +197,9 @@ public class MyAccountTests extends BaseTests {
         homePage.logOut();
     }
 
+    @Description("Given I'm in my account page, When I try to delete an address, Then address should be deleted successfully")
+    @Story("Account Info")
+    @Severity(SeverityLevel.MINOR)
     @Test(priority = 9)
     public void deleteAdditionalAddress(){
         HashMap<String, String> loginCredentials = getLoginCredentials();

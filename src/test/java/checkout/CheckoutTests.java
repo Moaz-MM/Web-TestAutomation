@@ -1,6 +1,10 @@
 package checkout;
 
 import base.BaseTests;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
@@ -11,6 +15,9 @@ public class CheckoutTests extends BaseTests {
 
     private String lastOrderNumber = "";
 
+    @Description("Given I chose a product and its options and added it to cart, When I proceed to checkout and follow the steps and click place order, Then order should be placed and order number should appear")
+    @Story("Checkout")
+    @Severity(SeverityLevel.BLOCKER)
     @Test(priority = 1)
     public void checkoutAndPlaceOrderSuccessfully(){
         HashMap<String, String> credentials = getLoginCredentials();
@@ -42,6 +49,9 @@ public class CheckoutTests extends BaseTests {
         homePage.logOut();
     }
 
+    @Description("Given I'm in my account page, When click past orders, Then past orders should appear with their numbers")
+    @Story("Checkout")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 2)
     public void verifyOrderIsAddedToMyOrders(){
         HashMap<String, String> credentials = getLoginCredentials();
@@ -53,5 +63,4 @@ public class CheckoutTests extends BaseTests {
         MyOrdersPage myOrdersPage = myAccountPage.clickMyOrdersButton();
         Assert.assertEquals(myOrdersPage.getLastOrderNumber(), lastOrderNumber, "Last order number doesn't match");
     }
-
 }

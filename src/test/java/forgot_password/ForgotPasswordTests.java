@@ -1,6 +1,10 @@
 package forgot_password;
 
 import base.BaseTests;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -11,6 +15,9 @@ import java.util.List;
 
 public class ForgotPasswordTests extends BaseTests {
 
+    @Description("Given I'm in the forgot password page, When I enter my email, Then a message stating that email was sent to the email should appear")
+    @Story("Forgot Password")
+    @Severity(SeverityLevel.BLOCKER)
     @Test(dataProvider = "allLoginCredentials")
     public void resetWithValidEmail(String email){
         ForgotPasswordPage forgotPasswordPage = homePage.clickLoginButton().clickForgotPasswordButton();
@@ -21,6 +28,9 @@ public class ForgotPasswordTests extends BaseTests {
 //        Assert.assertEquals(forgotPasswordPage.getResetPasswordMessage(), "If there is an account associated with mo@za.com you will receive an email with a link to reset your password.", "forgot password message error");
     }
 
+    @Description("Given I'm in the forgot password page, When I enter invalid email, Then error message should appear")
+    @Story("Forgot Password")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void resetWithInvalidEmail(){
         ForgotPasswordPage forgotPasswordPage = homePage.clickLoginButton().clickForgotPasswordButton();
@@ -29,6 +39,9 @@ public class ForgotPasswordTests extends BaseTests {
         Assert.assertEquals(forgotPasswordPage.getEmailErrorMessage(), "Please enter a valid email address (Ex: johndoe@domain.com).", "Invalid email error message didn't appear");
     }
 
+    @Description("Given I'm in the forgot password page, When I enter empty fields, Then error message should appear")
+    @Story("Forgot Password")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void resetWithEmptyEmailField(){
         ForgotPasswordPage forgotPasswordPage = homePage.clickLoginButton().clickForgotPasswordButton();

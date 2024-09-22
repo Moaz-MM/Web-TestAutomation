@@ -21,7 +21,7 @@ public class HomePage {
     private final By myAccountButton = By.linkText("My Account");
     private final By myWishListButton = By.linkText("My Wish List");
     private final By signoutButton = By.linkText("Sign Out");
-    private final By cartIcon = By.className("showcart");
+//    private final By cartIcon = By.className("showcart");
 //    private final By addToCartButton = By.xpath("//*[contains(@class, 'product-items')]/li[3]//button");
     private final By listOfProducts = By.className("product-items");
     private final By thirdProductBlock = By.xpath("//li[@class='product-item'][3]");
@@ -97,15 +97,6 @@ public class HomePage {
         driver.findElement(myWishListButton).click();
         return new MyWishListPage(driver);
     }
-
-    public CartSidePanel clickCartIcon(){
-        driver.findElement(cartIcon).click();
-        return new CartSidePanel(driver);
-    }
-
-//    public void addProductToCart(){
-//        driver.findElement(addToCartButton).click();
-//    }
 
     public void logOut(){
         driver.findElement(changeButton).click();

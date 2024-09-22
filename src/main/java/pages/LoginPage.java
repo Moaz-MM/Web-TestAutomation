@@ -18,6 +18,7 @@ public class LoginPage {
     private final By loginErrorMessage = By.xpath("//div[@data-ui-id='message-error']/div");
     private final By emailErrorMessage = By.id("email-error");
     private final By passwordErrorMessage = By.id("pass-error");
+    private final By logoutMessage = By.xpath("//span[@data-ui-id='page-title-wrapper']");
 //    By myAccountHeader = By.className("base");
 
     public LoginPage(WebDriver driver) {
@@ -61,5 +62,13 @@ public class LoginPage {
     public ForgotPasswordPage clickForgotPasswordButton(){
         driver.findElement(forgotPasswordButton).click();
         return new ForgotPasswordPage(driver);
+    }
+
+    public String getLogoutMessage(){
+        try {
+            return driver.findElement(logoutMessage).getText();
+        } catch (Exception e){
+            return "Logout message didn't appear";
+        }
     }
 }

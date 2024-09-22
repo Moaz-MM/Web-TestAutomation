@@ -1,6 +1,10 @@
 package register;
 
 import base.BaseTests;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -10,6 +14,9 @@ import java.util.HashMap;
 
 public class RegisterTests extends BaseTests {
 
+    @Description("Given I'm in the registration form, When I enter valid registration data, Then I should be able to register successfully")
+    @Story("Registration")
+    @Severity(SeverityLevel.BLOCKER)
     @Test(invocationCount = 3)
     public void registerSuccessfully(){
         RegisterPage registerPage = homePage.clickRegisterButton();
@@ -22,6 +29,9 @@ public class RegisterTests extends BaseTests {
         homePage.clickLogo();
     }
 
+    @Description("Given I'm in the registration form, When I enter an already registered email, Then error message should appear")
+    @Story("Registration")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void registerWithExistingEmail(){
         RegisterPage registerPage = homePage.clickRegisterButton();
@@ -32,6 +42,9 @@ public class RegisterTests extends BaseTests {
         homePage.clickLogo();
     }
 
+    @Description("Given I'm in the registration form, When I enter empty fields, Then error message should appear")
+    @Story("Registration")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void registerWithEmptyFields(){
         RegisterPage registerPage = homePage.clickRegisterButton();
@@ -46,6 +59,9 @@ public class RegisterTests extends BaseTests {
         homePage.clickLogo();
     }
 
+    @Description("Given I'm in the registration form, When I enter invalid registration data, Then error message should appear")
+    @Story("Registration")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void registerWithInvalidEmail(){
         RegisterPage registerPage = homePage.clickRegisterButton();
@@ -54,6 +70,9 @@ public class RegisterTests extends BaseTests {
         homePage.clickLogo();
     }
 
+    @Description("Given I'm in the registration form, When I enter confirmation password not matching the password, Then error message should appear")
+    @Story("Registration")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void registerWithPasswordAndConfirmPasswordNotMatching(){
         RegisterPage registerPage = homePage.clickRegisterButton();
