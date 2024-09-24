@@ -71,4 +71,10 @@ public class LoginPage {
             return "Logout message didn't appear";
         }
     }
+
+    public void completeLogin(String email, String password){
+        setEmail(email);
+        setPassword(password);
+        clickLoginButton();
+    }
 }

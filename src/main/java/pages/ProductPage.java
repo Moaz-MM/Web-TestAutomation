@@ -31,6 +31,11 @@ public class ProductPage {
         driver.findElement(colorButton).click();
     }
 
+    public void chooseSizeAndColor(String size, String color){
+        chooseSize(size);
+        chooseColor(color);
+    }
+
     public void chooseQuantity(int quantity){
         driver.findElement(quantityField).clear();
         driver.findElement(quantityField).sendKeys(String.valueOf(quantity));
