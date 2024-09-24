@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="F:/ITI/17-Project/Web-Automation">
+        <classes>
+            <class name="register.RegisterTests">
+                <methods>
+                    <include name="registerSuccessfully"/>
+                    <include name="registerWithExistingEmail"/>
+                    <include name="registerWithEmptyFields"/>
+                    <include name="registerWithInvalidEmail"/>
+                    <include name="registerWithPasswordAndConfirmPasswordNotMatching"/>
+                </methods>
+            </class>
+            <class name="login.LoginTests">
+                <methods>
+                    <include name="loginSuccessfully"/>
+                    <include name="loginWithInvalidEmail"/>
+                    <include name="loginWithEmptyFields"/>
+                    <include name="logout"/>
+                </methods>
+            </class>
+            <class name="forgot_password.ForgotPasswordTests">
+                <methods>
+                    <include name="resetWithValidEmail"/>
+                    <include name="resetWithInvalidEmail"/>
+                    <include name="resetWithEmptyEmailField"/>
+                </methods>
+            </class>
+            <class name="account.MyAccountTests">
+                <methods>
+                    <include name="changeEmailWithValidEmail"/>
+                    <include name="changeEmailWithExistingEmail"/>
+                    <include name="changeEmailWithInvalidEmail"/>
+                    <include name="changePasswordWithValidPassword"/>
+                    <include name="changePasswordWithInvalidPassword"/>
+                    <include name="addFirstAddressToAddressBook"/>
+                    <include name="addNewAddressesToAddressBook"/>
+                    <include name="editAdditionalAddresses"/>
+                    <include name="deleteAdditionalAddress"/>
+                </methods>
+            </class>
+            <class name="wishlist.WishlistTests">
+                <methods>
+                    <include name="addProductToWishList"/>
+                    <include name="addAllToCartWithoutSelectingProductOptions"/>
+                    <include name="deleteProductFromWishList"/>
+                    <include name="addAllToCartAfterSelectingProductOptions"/>
+                </methods>
+            </class>
+            <class name="search.SearchTests">
+                <methods>
+                    <include name="validSearch"/>
+                    <include name="invalidSearch"/>
+                    <include name="emptySearch"/>
+                    <include name="sortByPriceDescending"/>
+                    <include name="sortByPriceAscending"/>
+                </methods>
+            </class>
+            <class name="filter_products.FilterProductsTests">
+                <methods>
+                    <include name="filterBySizeAndColor"/>
+                    <include name="sortByPriceDescending"/>
+                    <include name="sortByPriceAscending"/>
+                    <include name="addProductToCartAfterChoosingOptions"/>
+                    <include name="addProductToCartWithoutChoosingOptions"/>
+                </methods>
+            </class>
+            <class name="checkout.CheckoutTests">
+                <methods>
+                    <include name="checkoutAndPlaceOrderSuccessfully"/>
+                    <include name="verifyOrderIsAddedToMyOrders"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
